@@ -12,7 +12,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.14",
     "@astrojs/rss": "^4.0.17",
     "astro": "^6.0.8",
     "postcss": "^8.5.8",
@@ -20,6 +19,7 @@
     "shiki": "^4.0.2"
   },
   "devDependencies": {
+    "@astrojs/mdx": "^5.0.0",
     "@astrojs/sitemap": "^3.7.1",
     "@astrojs/tailwind": "^6.0.2",
     "@tailwindcss/typography": "^0.5.19",
