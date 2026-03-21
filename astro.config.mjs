@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://devpulse.blog',
+  site: 'https://blog.sdtechworld.in',
   integrations: [
     tailwind({ applyBaseStyles: false }),
     mdx(),

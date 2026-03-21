@@ -40,7 +40,7 @@ const ogImage = new URL(image, Astro.site).toString();
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={ogImage} />
-<meta property="og:site_name" content="DevPulse" />
+<meta property="og:site_name" content="SDTechWorld" />
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
@@ -48,7 +48,7 @@ const ogImage = new URL(image, Astro.site).toString();
 <meta name="twitter:title" content={fullTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
-<meta name="twitter:creator" content="@devpulse" />
+<!-- <meta name="twitter:creator" content="@devpulse" /> -->
 
 <!-- Article-specific schema -->
 {article && (
@@ -71,13 +71,13 @@ const ogImage = new URL(image, Astro.site).toString();
     "dateModified": (article.updatedDate ?? article.pubDate).toISOString(),
     "author": {
       "@type": "Person",
-      "name": article.author ?? "DevPulse Team",
-      "url": "https://devpulse.blog/about"
+      "name": article.author ?? "SDTechWorld",
+      "url": "https://blog.sdtechworld.in/about"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "DevPulse",
-      "logo": { "@type": "ImageObject", "url": "https://devpulse.blog/logo.svg" }
+      "name": "SDTechWorld",
+      "logo": { "@type": "ImageObject", "url": "https://blog.sdtechworld.in/logo.svg" }
     },
     "mainEntityOfPage": { "@type": "WebPage", "@id": canonicalURL },
     "keywords": article.tags?.join(', ')
@@ -88,10 +88,10 @@ const ogImage = new URL(image, Astro.site).toString();
     "@type": "WebSite",
     "name": "SDTechWorld",
     "description": "A modern developer tech blog platform for sharing technical insights, tutorials, and best practices.",
-    "url": "https://devpulse.blog",
+    "url": "https://blog.sdtechworld.in",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://devpulse.blog/blog?search={search_term_string}",
+      "target": "https://blog.sdtechworld.in/blog?search={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   })} />
