@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+import { sortByDate, filterDrafts, getAllTags, getAllCategories, tagToSlug } from '../../utils/blog';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  const posts = filterDrafts(allPosts);
+  const tags = getAllTags(posts);
+  const categories = getAllCategories(posts);
+
+  const allTopics = new Set([...tags.keys(), ...categories.keys()]);
+
+  return Array.from(allTopics).map((topic) => {
+    const filteredPosts = posts.filter((post) => 
+      post.data.tags.includes(topic) || post.data.category === topic
+    );
+    return {
+      params: { tag: tagToSlug(topic) },
+      props: { posts: sortByDate(filteredPosts), tagName: topic },
+    };
+  });
+}
+
+const { posts, tagName } = Astro.props;
+const title = `${tagName} Articles | DevPulse`;
+const description = `All technical articles and tutorials tagged with ${tagName} on DevPulse.`;
+---
+
+<BaseLayout {title} {description}>
+  <div class="space-y-12">
+    <header class="max-w-3xl">
+      <a href="/tags" class="text-brand-600 dark:text-brand-400 text-sm font-semibold flex items-center gap-1 hover:underline mb-4">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        Back to all topics
+      </a>
+      <p class="section-eyebrow mb-2">Topic Archive</p>
+      <h1 class="text-4xl font-bold text-surface-900 dark:text-surface-50 mb-4 tracking-tight">
+        Articles tagged with <span class="gradient-text">#{tagName}</span>
+      </h1>
+      <p class="text-lg text-surface-600 dark:text-surface-400">
+        Showing {posts.length} {posts.length === 1 ? 'article' : 'articles'} in this topic.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {posts.map(post => (
+        <PostCard post={post} />
+      ))}
+    </div>
+  </div>
+</BaseLayout>

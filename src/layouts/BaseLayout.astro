@@ -1,0 +1,72 @@
+---
+import SEO from '../components/SEO.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  article?: any;
+  fullWidth?: boolean;
+}
+
+const { title, description, image, article, fullWidth = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <SEO {title} {description} {image} {article} />
+  </head>
+  <body class="min-h-screen flex flex-col bg-surface-50 dark:bg-surface-950">
+    <!-- Reading progress bar (visible on article pages) -->
+    <div id="reading-progress" class="reading-progress" aria-hidden="true"></div>
+
+    <Header />
+
+    <main id="main-content" class="flex-1 page-transition" tabindex="-1">
+      {fullWidth
+        ? <slot />
+        : (
+          <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <slot />
+          </div>
+        )
+      }
+    </main>
+
+    <Footer />
+
+    <!-- Theme toggle & Reading progress scripts -->
+    <script is:inline>
+      // Theme init (before paint to avoid flash)
+      const theme = localStorage.getItem('theme') ??
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.classList.toggle('dark', theme === 'dark');
+    </script>
+
+    <script>
+      // Reading progress bar
+      const bar = document.getElementById('reading-progress');
+      if (bar) {
+        const updateProgress = () => {
+          const total = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = total > 0 ? Math.min((window.scrollY / total) * 100, 100) : 0;
+          document.documentElement.style.setProperty('--progress', `${progress}%`);
+        };
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        updateProgress();
+      }
+
+      // Skip link focus management
+      document.querySelector('a[href="#main-content"]')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        const main = document.getElementById('main-content');
+        main?.focus();
+        main?.scrollIntoView();
+      });
+    </script>
+  </body>
+</html>

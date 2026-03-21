@@ -1,0 +1,41 @@
+---
+// CodeBlock.astro – enhanced wrapper for Shiki-highlighted code
+// Adds language label, line count, and copy-to-clipboard
+---
+
+<script>
+  // Copy-to-clipboard for all code blocks
+  document.querySelectorAll<HTMLElement>('.code-block-wrapper').forEach(wrapper => {
+    const btn = wrapper.querySelector<HTMLButtonElement>('.copy-btn');
+    const pre = wrapper.querySelector('pre');
+    if (!btn || !pre) return;
+
+    btn.addEventListener('click', async () => {
+      const code = pre.innerText;
+      try {
+        await navigator.clipboard.writeText(code);
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = `
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20,6 9,17 4,12"/></svg>
+          Copied!
+        `;
+        btn.setAttribute('aria-label', 'Copied!');
+        setTimeout(() => {
+          btn.innerHTML = originalHTML;
+          btn.setAttribute('aria-label', 'Copy code');
+        }, 2000);
+      } catch {
+        btn.textContent = 'Failed';
+        setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+      }
+    });
+  });
+</script>
+
+<style>
+  /* Applied globally via global.css but scoped fallback here */
+  .code-block-wrapper pre {
+    margin: 0;
+    border-radius: 0 0 0.75rem 0.75rem;
+  }
+</style>

@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FreelanceAd from '../components/FreelanceAd.astro';
+
+const title = "About DevPulse | The Platform";
+const description = "Learn about the mission, the technology, and the team behind DevPulse.";
+---
+
+<BaseLayout {title} {description}>
+  <div class="max-w-4xl mx-auto py-10">
+    <header class="mb-12 px-4">
+      <p class="section-eyebrow mb-2 text-brand-500">Our Mission</p>
+      <h1 class="text-4xl sm:text-5xl font-bold text-surface-900 dark:text-surface-50 mb-6 tracking-tight">
+        Building the ultimate <span class="gradient-text">Developer Hub</span>
+      </h1>
+      <p class="text-xl text-surface-600 dark:text-surface-400 leading-relaxed">
+        SDTechWorld was created to solve a simple problem: the web is full of technical content, but finding high-quality, long-form, and truly deep-dive articles is harder than ever.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16 px-4">
+      <div class="space-y-6">
+        <h2 class="text-2xl font-bold text-surface-900 dark:text-surface-50">Our Core Principles</h2>
+        <ul class="space-y-4">
+          <li class="flex gap-3">
+            <div class="shrink-0 w-6 h-6 rounded-full bg-brand-100 dark:bg-brand-900/40 flex items-center justify-center text-brand-600 dark:text-brand-400 mt-1">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <p class="font-bold text-surface-900 dark:text-surface-50">Quality over Quantity</p>
+              <p class="text-surface-600 dark:text-surface-400 text-sm italic">We'd rather publish one 2,000-word deep dive than ten superficial tutorials.</p>
+            </div>
+          </li>
+          <li class="flex gap-3">
+            <div class="shrink-0 w-6 h-6 rounded-full bg-brand-100 dark:bg-brand-900/40 flex items-center justify-center text-brand-600 dark:text-brand-400 mt-1">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <p class="font-bold text-surface-900 dark:text-surface-50">Performance is a Feature</p>
+              <p class="text-surface-600 dark:text-surface-400 text-sm italic">A developer site should be the fastest site you visit all day.</p>
+            </div>
+          </li>
+          <li class="flex gap-3">
+            <div class="shrink-0 w-6 h-6 rounded-full bg-brand-100 dark:bg-brand-900/40 flex items-center justify-center text-brand-600 dark:text-brand-400 mt-1">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <p class="font-bold text-surface-900 dark:text-surface-50">Open Source Spirit</p>
+              <p class="text-surface-600 dark:text-surface-400 text-sm italic">We believe in sharing knowledge freely and the power of community.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card p-8 bg-surface-50 dark:bg-surface-900/50 border border-surface-200 dark:border-surface-800 relative overflow-hidden">
+        <div class="absolute -top-10 -right-10 w-40 h-40 bg-brand-500/5 rounded-full blur-3xl"></div>
+        <div class="relative z-10">
+          <h2 class="text-2xl font-bold mb-4 text-surface-900 dark:text-surface-50">The Force Behind: <span class="gradient-text">SD Tech World</span></h2>
+          <p class="text-surface-600 dark:text-surface-400 mb-6 text-sm leading-relaxed">
+            SD Tech World is more than just a brand; it's a vision dedicated to empowering developers through high-quality educational content, modern tools, and innovative freelance solutions. We are committed to bridging the gap between complex engineering and elegant, user-centric software.
+          </p>
+          <div class="flex items-center gap-4">
+             <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500 to-accent-violet flex items-center justify-center text-white text-xl font-bold shadow-glow-sm">S</div>
+             <div>
+               <p class="text-sm font-bold text-surface-900 dark:text-surface-50">SD Tech World</p>
+               <p class="text-xs text-surface-500">Innovation in Tech</p>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Freelance Ad Section -->
+    <div class="mb-16 -mx-4 sm:mx-0">
+      <FreelanceAd />
+    </div>
+
+    <section class="prose dark:prose-invert max-w-none border-t border-surface-200 dark:border-surface-800 pt-16 px-4">
+      <h2 class="text-3xl font-bold text-surface-900 dark:text-surface-50 mb-8">About the Author</h2>
+      <div class="flex flex-col sm:flex-row gap-8 items-start not-prose">
+        <div class="w-32 h-32 rounded-3xl overflow-hidden shrink-0 rotate-3 shadow-glow-lg border-4 border-white dark:border-surface-800 group hover:rotate-0 transition-transform duration-500">
+           <!-- Placeholder for author image -->
+           <div class="w-full h-full bg-gradient-to-br from-brand-500 to-accent-violet flex items-center justify-center text-white text-4xl font-black">
+             SD
+           </div>
+        </div>
+        <div class="space-y-4">
+          <h3 class="text-2xl font-bold text-surface-900 dark:text-surface-50">SD Tech World</h3>
+          <p class="text-surface-600 dark:text-surface-400 leading-relaxed max-w-2xl">
+            Software Engineer, Open Source Contributor, and technical writer with over a decade of experience in the industry. Currently focused on building developer tools and improving the state of web performance.
+          </p>
+          <!-- <div class="flex items-center gap-4">
+            <a href="https://github.com" class="btn-secondary px-4 py-2 text-xs">Follow on GitHub</a>
+            <a href="https://twitter.com" class="btn-secondary px-4 py-2 text-xs">Follow on X</a>
+          </div> -->
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

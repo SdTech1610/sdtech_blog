@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { sortByDate, filterDrafts, formatDateShort } from '../utils/blog';
+
+const allPosts = await getCollection('blog');
+const posts = sortByDate(filterDrafts(allPosts));
+
+// Group posts by year
+const groupedPosts = posts.reduce((acc, post) => {
+  const year = post.data.pubDate.getFullYear();
+  if (!acc[year]) acc[year] = [];
+  acc[year].push(post);
+  return acc;
+}, {} as Record<number, typeof posts>);
+
+const years = Object.keys(groupedPosts).sort((a, b) => Number(b) - Number(a));
+
+const title = "Article Archive | DevPulse";
+const description = "A full chronological list of all articles published on DevPulse.";
+---
+
+<BaseLayout {title} {description}>
+  <div class="max-w-4xl mx-auto">
+    <header class="mb-12">
+      <p class="section-eyebrow mb-2">History</p>
+      <h1 class="text-4xl font-bold text-surface-900 dark:text-surface-50 mb-4 tracking-tight">
+        Article <span class="gradient-text">Archive</span>
+      </h1>
+      <p class="text-lg text-surface-600 dark:text-surface-400">
+        A complete chronological list of every technical article published on this platform.
+      </p>
+    </header>
+
+    <div class="space-y-16">
+      {years.map(year => (
+        <section aria-labelledby={`year-${year}`}>
+          <div class="flex items-center gap-4 mb-8">
+            <h2 id={`year-${year}`} class="text-3xl font-bold text-surface-900 dark:text-surface-50 shrink-0">
+              {year}
+            </h2>
+            <div class="h-px w-full bg-surface-200 dark:bg-surface-800"></div>
+          </div>
+          
+          <ul class="space-y-6" role="list">
+            {groupedPosts[Number(year)].map(post => (
+              <li class="group">
+                <a href={`/blog/${post.id}`} class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-4 px-6 rounded-2xl hover:bg-white dark:hover:bg-surface-900 hover:shadow-card transition-all border border-transparent hover:border-surface-200 dark:hover:border-surface-800">
+                  <div class="flex flex-col gap-1">
+                    <h3 class="font-bold text-surface-900 dark:text-surface-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors text-lg">
+                      {post.data.title}
+                    </h3>
+                    <div class="flex items-center gap-2">
+                      <span class="tag tag-surface text-2xs">{post.data.category}</span>
+                      {post.data.tags.slice(0, 2).map(tag => (
+                        <span class="text-2xs text-surface-400 dark:text-surface-500">#{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <time datetime={post.data.pubDate.toISOString()} class="text-sm font-medium text-surface-500 dark:text-surface-400 tabular-nums">
+                    {formatDateShort(post.data.pubDate)}
+                  </time>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+
+    {posts.length === 0 && (
+      <div class="text-center py-20">
+        <p class="text-surface-500 dark:text-surface-400">Archive is currently empty.</p>
+      </div>
+    )}
+  </div>
+</BaseLayout>

@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+import { sortByDate, filterDrafts, getAllTags, getAllCategories } from '../../utils/blog';
+
+const allPosts = await getCollection('blog');
+const posts = sortByDate(filterDrafts(allPosts));
+const categories = getAllCategories(posts);
+const tags = getAllTags(posts);
+
+const title = "All Articles | DevPulse Blog";
+const description = "Browse all technical articles, tutorials, and deep dives on DevPulse.";
+---
+
+<BaseLayout {title} {description}>
+  <div class="space-y-12">
+    <!-- Header -->
+    <header class="max-w-3xl">
+      <p class="section-eyebrow mb-2">Knowledge Base</p>
+      <h1 class="text-4xl font-bold text-surface-900 dark:text-surface-50 mb-4 tracking-tight">
+        Explore <span class="gradient-text">All Articles</span>
+      </h1>
+      <p class="text-lg text-surface-600 dark:text-surface-400">
+        Discover {posts.length} articles across {categories.size} categories and {tags.size} topics. 
+        Use the search in the header or browse by category below.
+      </p>
+    </header>
+
+    <!-- Filters/Categories bar -->
+    <div class="flex flex-wrap items-center gap-2 border-b border-surface-200 dark:border-surface-800 pb-6">
+      <span class="text-sm font-semibold text-surface-500 dark:text-surface-400 uppercase tracking-widest mr-2">Categories:</span>
+      <a href="/blog" class="tag tag-brand px-4 py-1.5 text-sm">All</a>
+      {[...categories.keys()].map(cat => (
+        <a href={`/tags/${cat.toLowerCase().replace(/\s+/g,'-')}`} class="tag tag-surface hover:tag-brand px-4 py-1.5 text-sm transition-all">
+          {cat}
+        </a>
+      ))}
+    </div>
+
+    <!-- Posts Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {posts.map(post => (
+        <PostCard post={post} />
+      ))}
+    </div>
+
+    <!-- Empty state if no posts -->
+    {posts.length === 0 && (
+      <div class="text-center py-20">
+        <p class="text-surface-500 dark:text-surface-400">No articles found yet. Check back soon!</p>
+      </div>
+    )}
+  </div>
+</BaseLayout>

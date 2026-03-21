@@ -1,0 +1,34 @@
+# Decap CMS Configuration
+backend:
+  name: git-gateway
+  branch: main
+
+# Local development backend
+local_backend: true
+
+publish_mode: editorial_workflow
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Publish Date", name: "pubDate", widget: "datetime" }
+      - { label: "Updated Date", name: "updatedDate", widget: "datetime", required: false }
+      - { label: "Author", name: "author", widget: "string", default: "DevPulse Team" }
+      - { label: "Category", name: "category", widget: "select", options: ["Web Dev", "DevOps", "System Design", "UI/UX", "Open Source", "Tooling"], default: "Web Dev" }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Hero Image", name: "heroImage", widget: "image", required: false }
+      - { label: "Hero Alt Text", name: "heroAlt", widget: "string", required: false }
+      - { label: "Featured Post", name: "featured", widget: "boolean", default: false }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "Show Promo Block", name: "showPromo", widget: "boolean", default: false, required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "SEO Title", name: "seoTitle", widget: "string", required: false }
+      - { label: "SEO Description", name: "seoDescription", widget: "text", required: false }

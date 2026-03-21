@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import FreelanceAd from '../components/FreelanceAd.astro';
+import { getCollection } from 'astro:content';
+import { sortByDate, filterDrafts, getAllTags } from '../utils/blog';
+
+const allPosts    = await getCollection('blog');
+const posts       = sortByDate(filterDrafts(allPosts));
+const featured    = posts.filter(p => p.data.featured).slice(0, 1);
+const latest      = posts.filter(p => !p.data.featured).slice(0, 6);
+const topTags     = [...getAllTags(posts).entries()].slice(0, 12);
+const heroPost    = featured[0] ?? posts[0];
+const recentAll   = posts.slice(0, 3);
+---
+
+<BaseLayout
+  title="DevPulse — Developer Tech Blog"
+  description="Deep dives into web development, DevOps, system design, open source, and modern tooling. Technical articles for developers by developers."
+  fullWidth={true}
+>
+  <!-- ─── HERO ─── -->
+  <section class="hero-bg bg-grid-pattern bg-surface-50 dark:bg-surface-950" aria-labelledby="hero-heading">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Hero text -->
+        <div class="animate-fade-in">
+          <p class="section-eyebrow mb-4 flex items-center gap-2">
+            <span class="inline-block w-6 h-px bg-brand-500"></span>
+            Developer Knowledge Platform
+          </p>
+          <h1 id="hero-heading" class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-surface-900 dark:text-surface-50 leading-[1.1] mb-6 text-balance">
+            Where developers<br/>
+            <span class="gradient-text">level up</span> together
+          </h1>
+          <p class="text-lg sm:text-xl text-surface-600 dark:text-surface-400 leading-relaxed mb-8 max-w-lg">
+            Deep dives into web development, DevOps, system design, and the tools shaping modern software engineering. Written for developers, by developers.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/blog" class="btn-primary text-base px-6 py-3">
+              Browse All Articles
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <!-- <a href="/rss.xml" class="btn-secondary text-base px-6 py-3" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+              Subscribe via RSS
+            </a> -->
+          </div>
+
+          <!-- Stats -->
+          <div class="flex items-center gap-8 mt-10 pt-8 border-t border-surface-200 dark:border-surface-800">
+            <div>
+              <p class="text-2xl font-bold text-surface-900 dark:text-surface-50">{posts.length}+</p>
+              <p class="text-xs text-surface-500 dark:text-surface-400">Articles published</p>
+            </div>
+            <div>
+              <p class="text-2xl font-bold text-surface-900 dark:text-surface-50">{topTags.length}+</p>
+              <p class="text-xs text-surface-500 dark:text-surface-400">Topics covered</p>
+            </div>
+            <div>
+              <p class="text-2xl font-bold text-surface-900 dark:text-surface-50">100%</p>
+              <p class="text-xs text-surface-500 dark:text-surface-400">Free forever</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Featured post card -->
+        {heroPost && (
+          <div class="animate-slide-up">
+            <article class="group card-hover overflow-hidden" aria-label={`Featured: ${heroPost.data.title}`}>
+              {heroPost.data.heroImage && (
+                <div class="overflow-hidden aspect-[16/10]">
+                  <img
+                    src={heroPost.data.heroImage}
+                    alt={heroPost.data.heroAlt ?? heroPost.data.title}
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="eager"
+                    decoding="async"
+                    width="600"
+                    height="375"
+                  />
+                </div>
+              )}
+              <div class="p-6">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="section-eyebrow">Featured</span>
+                  <span class="text-surface-300 dark:text-surface-600" aria-hidden="true">·</span>
+                  <span class="tag tag-brand">{heroPost.data.category}</span>
+                </div>
+                <h2 class="text-xl font-bold text-surface-900 dark:text-surface-50 mb-2 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors leading-snug">
+                  <a href={`/blog/${heroPost.id}`}>{heroPost.data.title}</a>
+                </h2>
+                <p class="text-sm text-surface-600 dark:text-surface-400 line-clamp-2 mb-4">{heroPost.data.description}</p>
+                <a href={`/blog/${heroPost.id}`} class="btn-primary text-sm px-4 py-2">
+                  Read now →
+                </a>
+              </div>
+            </article>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TRENDING TAGS ─── -->
+  <section class="bg-surface-100 dark:bg-surface-900/50 border-y border-surface-200 dark:border-surface-800 py-5" aria-label="Trending topics">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-4 overflow-x-auto no-scrollbar">
+        <span class="text-xs font-semibold text-surface-500 dark:text-surface-400 uppercase tracking-widest shrink-0">Trending:</span>
+        <div class="flex gap-2 flex-nowrap">
+          {topTags.map(([tag, count]) => (
+            <a
+              href={`/tags/${tag.toLowerCase().replace(/\s+/g,'-')}`}
+              class="shrink-0 tag tag-surface hover:tag-brand transition-all duration-200"
+              aria-label={`${tag} – ${count} articles`}
+            >
+              #{tag}
+              <span class="text-surface-400 dark:text-surface-500 ml-0.5">({count})</span>
+            </a>
+          ))}
+        </div>
+        <a href="/tags" class="shrink-0 text-xs font-medium text-brand-600 dark:text-brand-400 hover:underline ml-auto">
+          All tags →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── LATEST POSTS ─── -->
+  <section class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-16" aria-labelledby="latest-heading">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <p class="section-eyebrow mb-1">Fresh content</p>
+        <h2 id="latest-heading" class="section-heading">Latest Articles</h2>
+      </div>
+      <a href="/blog" class="btn-secondary text-sm hidden sm:flex">
+        View all
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {recentAll.map((post, i) => (
+        <PostCard post={post} variant="default" loading={i < 3 ? 'eager' : 'lazy'} />
+      ))}
+    </div>
+
+    <div class="flex justify-center mt-10 sm:hidden">
+      <a href="/blog" class="btn-secondary">View all articles</a>
+    </div>
+  </section>
+
+  <!-- ─── FREELANCE AD ─── -->
+  <FreelanceAd />
+</BaseLayout>

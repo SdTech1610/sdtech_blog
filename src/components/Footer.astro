@@ -1,0 +1,57 @@
+---
+const currentYear = new Date().getFullYear();
+
+const footerLinks = {
+  Content: [
+    { href: '/blog',    label: 'All Posts'  },
+    { href: '/tags',    label: 'Browse Tags' },
+    { href: '/archive', label: 'Archive'     },
+  ],
+  Platform: [
+    { href: '/about',  label: 'About'  },
+  ],
+};
+---
+
+<footer class="bg-white dark:bg-surface-900 border-t border-surface-200 dark:border-surface-800 mt-16" role="contentinfo">
+  <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Main footer -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 py-12">
+      <!-- Brand -->
+      <div class="col-span-1">
+        <a href="/" class="flex items-center gap-2.5 mb-4 w-fit group" aria-label="DevPulse Home">
+           <img src="/logo.png" alt="Logo" class="w-[fit-content] h-[60px]" />
+        </a>
+        <p class="text-sm text-surface-500 dark:text-surface-400 leading-relaxed max-w-xs">
+          A modern developer knowledge platform. Deep dives into web development, DevOps, open source, and the tools that make great software.
+        </p>
+      </div>
+
+      <!-- Links -->
+      {Object.entries(footerLinks).map(([group, links]) => (
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-surface-900 dark:text-surface-400 mb-4">{group}</h3>
+          <ul class="space-y-2.5" role="list">
+            {links.map(link => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-sm text-surface-500 dark:text-surface-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="border-t border-surface-100 dark:border-surface-800 py-5 flex flex-col sm:flex-row items-center justify-center gap-3">
+      <p class="text-xs text-surface-400 dark:text-surface-500">
+        &copy; {currentYear} SDTechWorld. Built with 💜
+      </p>
+    </div>
+  </div>
+</footer>

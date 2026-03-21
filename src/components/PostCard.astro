@@ -1,0 +1,143 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDateShort, tagColor } from '../utils/blog';
+
+export interface Props {
+  post: CollectionEntry<'blog'>;
+  variant?: 'default' | 'featured' | 'compact';
+  loading?: 'eager' | 'lazy';
+}
+
+const { post, variant = 'default', loading = 'lazy' } = Astro.props;
+const { title, description, pubDate, heroImage, heroAlt, tags, category, readingTime, featured } = post.data;
+const url = `/blog/${post.id}`;
+---
+
+{variant === 'featured' && (
+  <article class="group card-hover overflow-hidden col-span-full" aria-label={`Featured: ${title}`}>
+    <a href={url} class="flex flex-col md:flex-row gap-0" tabindex="-1">
+      {heroImage && (
+        <div class="overflow-hidden md:w-1/2 aspect-[16/10] md:aspect-auto">
+          <img
+            src={heroImage}
+            alt={heroAlt ?? title}
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            loading={loading}
+            decoding="async"
+            width="800"
+            height="500"
+          />
+        </div>
+      )}
+      <div class="flex flex-col justify-center p-6 md:p-8 md:w-1/2">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="section-eyebrow">Featured</span>
+          <span class="text-surface-300 dark:text-surface-600" aria-hidden="true">·</span>
+          <span class="tag tag-brand">{category}</span>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-bold text-surface-900 dark:text-surface-50 leading-tight mb-3 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors text-balance">
+          <a href={url}>{title}</a>
+        </h2>
+        <p class="text-surface-600 dark:text-surface-400 leading-relaxed mb-5 line-clamp-3">{description}</p>
+        <div class="flex flex-wrap gap-1.5 mb-5">
+          {tags.slice(0, 4).map(tag => (
+            <a href={`/tags/${tag.toLowerCase().replace(/\s+/g,'-')}`} class={`tag hover:opacity-80 transition-opacity ${tagColor(tag)}`}>
+              #{tag}
+            </a>
+          ))}
+        </div>
+        <div class="flex items-center gap-3 text-xs text-surface-500 dark:text-surface-400">
+          <time datetime={pubDate.toISOString()}>{formatDateShort(pubDate)}</time>
+          {readingTime && (
+            <>
+              <span aria-hidden="true">·</span>
+              <span>{readingTime} min read</span>
+            </>
+          )}
+        </div>
+      </div>
+    </a>
+  </article>
+)}
+
+{variant === 'default' && (
+  <article class="group card-hover overflow-hidden flex flex-col" aria-label={title}>
+    {heroImage && (
+      <a href={url} class="overflow-hidden aspect-[16/9] block" tabindex="-1" aria-hidden="true">
+        <img
+          src={heroImage}
+          alt={heroAlt ?? title}
+          class="post-image"
+          loading={loading}
+          decoding="async"
+          width="400"
+          height="225"
+        />
+      </a>
+    )}
+    <div class="flex flex-col flex-1 p-5">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="tag tag-surface">{category}</span>
+        {featured && <span class="tag-brand tag">Featured</span>}
+      </div>
+      <h2 class="text-lg font-bold text-surface-900 dark:text-surface-50 leading-snug mb-2 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors line-clamp-2">
+        <a href={url} class="focus-visible:outline-brand-500">{title}</a>
+      </h2>
+      <p class="text-sm text-surface-600 dark:text-surface-400 leading-relaxed line-clamp-2 flex-1 mb-4">{description}</p>
+      <div class="flex flex-wrap gap-1 mb-4">
+        {tags.slice(0, 3).map(tag => (
+          <a href={`/tags/${tag.toLowerCase().replace(/\s+/g,'-')}`} class={`tag text-2xs hover:opacity-80 ${tagColor(tag)}`}>
+            #{tag}
+          </a>
+        ))}
+      </div>
+      <div class="flex items-center justify-between pt-3 border-t border-surface-100 dark:border-surface-800">
+        <div class="flex items-center gap-2 text-xs text-surface-500 dark:text-surface-400">
+          <time datetime={pubDate.toISOString()}>{formatDateShort(pubDate)}</time>
+          {readingTime && (
+            <>
+              <span aria-hidden="true">·</span>
+              <span>{readingTime} min</span>
+            </>
+          )}
+        </div>
+        <a href={url} class="text-xs font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors flex items-center gap-1 group/link">
+          Read
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="translate-x-0 group-hover/link:translate-x-0.5 transition-transform" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </article>
+)}
+
+{variant === 'compact' && (
+  <article class="group flex gap-4 py-4 border-b border-surface-100 dark:border-surface-800 last:border-0" aria-label={title}>
+    {heroImage && (
+      <a href={url} class="shrink-0 overflow-hidden rounded-lg w-20 h-16 sm:w-24 sm:h-18" tabindex="-1" aria-hidden="true">
+        <img
+          src={heroImage}
+          alt={heroAlt ?? title}
+          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading={loading}
+          decoding="async"
+          width="96"
+          height="64"
+        />
+      </a>
+    )}
+    <div class="flex flex-col justify-between min-w-0">
+      <h3 class="text-sm font-semibold text-surface-900 dark:text-surface-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors line-clamp-2 leading-snug mb-1">
+        <a href={url}>{title}</a>
+      </h3>
+      <div class="flex items-center gap-2 text-xs text-surface-500 dark:text-surface-400">
+        <time datetime={pubDate.toISOString()}>{formatDateShort(pubDate)}</time>
+        {readingTime && (
+          <>
+            <span aria-hidden="true">·</span>
+            <span>{readingTime} min read</span>
+          </>
+        )}
+      </div>
+    </div>
+  </article>
+)}
