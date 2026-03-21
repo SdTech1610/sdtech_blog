@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://blog.sdtechworld.in',
-  base: '/sdtech_blog',
+  base: '/',
   integrations: [
     tailwind({ applyBaseStyles: false }),
     mdx(),
