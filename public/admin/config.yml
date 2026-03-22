@@ -1,10 +1,7 @@
 # Decap CMS Configuration
 backend:
-  name: github
-  repo: sdtech1610/sdtech_blog
+  name: git-gateway
   branch: main
-  base_url: https://blog.sdtechworld.in
-  auth_endpoint: /admin/auth
 
 # Local development backend
 local_backend: true
