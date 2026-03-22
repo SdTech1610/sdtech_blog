@@ -1,6 +1,7 @@
 ---
 title: "Accessibility-First Design: Building a Truly Inclusive Web"
-description: Why accessibility is not a feature, but a fundamental requirement for modern software engineering.
+description: Why accessibility is not a feature, but a fundamental requirement
+  for modern software engineering.
 pubDate: 2026-03-26
 author: D. Pulse
 category: Design
@@ -12,7 +13,7 @@ tags:
 heroImage: https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1200&h=600
 heroAlt: High-tech visualization of digital accessibility and inclusivity
 featured: false
-showPromo: false
+showPromo: true
 ---
 
 ## What is Accessibility-First Design?
