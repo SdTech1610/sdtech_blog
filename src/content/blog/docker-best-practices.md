@@ -1,6 +1,8 @@
 ---
-title: "The Ultimate Guide to Docker Best Practices for 2026: More Power, Less Complexity"
-description: A deep dive into the latest and greatest features of Docker for modern software development.
+title: "The Ultimate Guide to Docker Best Practices for 2026: More Power, Less
+  Complexity"
+description: A deep dive into the latest and greatest features of Docker for
+  modern software development.
 pubDate: 2026-03-25
 author: D. Pulse
 category: DevOps
@@ -9,7 +11,7 @@ tags:
   - DevOps
   - Linux
   - Cloud
-heroImage: https://images.unsplash.com/photo-1605745341112-85968b193ef5?auto=format&fit=crop&q=80&w=1200&h=600
+heroImage: /images/uploads/wp8114669-docker-wallpapers.jpg
 heroAlt: High-tech visualization of digital containers and cloud technology
 featured: false
 showPromo: false
