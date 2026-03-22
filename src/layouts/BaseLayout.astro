@@ -19,6 +19,7 @@ const { title, description, image, article, fullWidth = false } = Astro.props;
 <html lang="en" class="scroll-smooth">
   <head>
     <SEO {title} {description} {image} {article} />
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body class="min-h-screen flex flex-col bg-surface-50 dark:bg-surface-950">
     <!-- Reading progress bar (visible on article pages) -->
@@ -46,6 +47,20 @@ const { title, description, image, article, fullWidth = false } = Astro.props;
         (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.classList.toggle('dark', theme === 'dark');
     </script>
+
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    
+      <script is:inline>
+        if (window.netlifyIdentity) {
+          window.netlifyIdentity.on("init", (user) => {
+            if (!user) {
+              window.netlifyIdentity.on("login", () => {
+                document.location.href = "/admin/";
+              });
+            }
+          });
+        }
+      </script>
 
     <script>
       // Reading progress bar
