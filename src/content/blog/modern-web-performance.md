@@ -10,7 +10,7 @@ tags:
   - JavaScript
   - Optimization
   - Architecture
-heroImage: https://images.unsplash.com/photo-1551288049-bbb652166ab6?auto=format&fit=crop&q=80&w=1200&h=600
+heroImage: /images/uploads/network-graphic-overlay-background-laptop-screen.jpg
 heroAlt: Abstract visualization of speed and data flow
 featured: true
 showPromo: true
