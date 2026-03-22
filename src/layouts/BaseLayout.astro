@@ -48,20 +48,6 @@ const { title, description, image, article, fullWidth = false } = Astro.props;
       document.documentElement.classList.toggle('dark', theme === 'dark');
     </script>
 
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    
-      <script is:inline>
-        if (window.netlifyIdentity) {
-          window.netlifyIdentity.on("init", (user) => {
-            if (!user) {
-              window.netlifyIdentity.on("login", () => {
-                document.location.href = "/admin/";
-              });
-            }
-          });
-        }
-      </script>
-
     <script>
       // Reading progress bar
       const bar = document.getElementById('reading-progress');

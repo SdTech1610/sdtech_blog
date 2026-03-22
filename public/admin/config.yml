@@ -4,7 +4,7 @@ backend:
   branch: main
 
 # Local development backend
-local_backend: true
+local_backend: false
 
 publish_mode: editorial_workflow
 media_folder: "public/images/uploads"
