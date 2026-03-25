@@ -2,7 +2,7 @@
 title: "The Rust Revolution: Why Web Developers Are Learning a System Language"
 description: From Wasm to blazingly fast tooling, Rust is transforming the web dev ecosystem. Why should you care?
 pubDate: 2026-03-20
-author: D. Pulse
+author: SDTechWorld
 category: Systems
 tags:
   - Rust

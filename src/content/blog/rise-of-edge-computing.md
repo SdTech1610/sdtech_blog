@@ -2,7 +2,7 @@
 title: "The Rise of Edge Computing: Bringing Logic Closer to the User"
 description: Why edge functions are replacing traditional serverless and how to leverage them in 2026.
 pubDate: 2026-03-24
-author: D. Pulse
+author: SDTechWorld
 category: DevOps
 tags:
   - Edge Computing

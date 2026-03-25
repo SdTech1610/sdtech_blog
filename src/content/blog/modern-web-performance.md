@@ -3,7 +3,7 @@ title: "Modern Web Performance: Beyond the Core Web Vitals"
 description: A deep dive into advanced performance optimization techniques for
   modern JavaScript applications, from resource hints to fine-grained hydration.
 pubDate: 2026-03-15
-author: D. Pulse
+author: SDTechWorld
 category: Web Dev
 tags:
   - Performance

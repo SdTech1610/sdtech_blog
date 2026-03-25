@@ -2,7 +2,7 @@
 title: "The Rise of Autonomous AI Agents: Beyond Chatbots"
 description: Exploring how the next generation of AI is moving from passive conversation to active task execution through autonomous agentic workflows.
 pubDate: 2026-03-18
-author: D. Pulse
+author: SDTechWorld
 category: AI & ML
 tags:
   - AI

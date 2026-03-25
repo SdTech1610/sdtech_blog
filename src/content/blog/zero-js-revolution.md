@@ -2,7 +2,7 @@
 title: "The Zero-JS Revolution: How Frameworks Like Astro are Reshaping the Web"
 description: Why sending less JavaScript to the browser is the best way to improve user experience and SEO.
 pubDate: 2026-03-21
-author: D. Pulse
+author: SDTechWorld
 category: Frontend
 tags:
   - Frontend

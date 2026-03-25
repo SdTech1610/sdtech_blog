@@ -2,7 +2,7 @@
 title: "Securing Modern Web Apps: Beyond CSP and CORS"
 description: An in-depth look at the latest security threats and how to defend against them in 2026.
 pubDate: 2026-03-22
-author: D. Pulse
+author: SDTechWorld
 category: Security
 tags:
   - Security

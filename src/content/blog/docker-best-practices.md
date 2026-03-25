@@ -4,7 +4,7 @@ title: "The Ultimate Guide to Docker Best Practices for 2026: More Power, Less
 description: A deep dive into the latest and greatest features of Docker for
   modern software development.
 pubDate: 2026-03-25
-author: D. Pulse
+author: SDTechWorld
 category: DevOps
 tags:
   - Docker

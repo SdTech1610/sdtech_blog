@@ -2,7 +2,7 @@
 title: "The Ultimate Guide to TypeScript 5 and Beyond: More Power, Less Boilerplate"
 description: A deep dive into the latest and greatest features of TypeScript for 2026.
 pubDate: 2026-03-23
-author: D. Pulse
+author: SDTechWorld
 category: JavaScript
 tags:
   - TypeScript
