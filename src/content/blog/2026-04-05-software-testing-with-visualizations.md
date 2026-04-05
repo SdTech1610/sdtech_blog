@@ -14,7 +14,44 @@ featured: false
 draft: false
 showPromo: true
 ---
-1.  **Manual Testing**
+<!-- Row 1 -->
+
+<div style="display: flex; align-items: center; gap: 20px; margin-bottom: 40px;">
+
+  <div style="flex: 1;">
+
+\    <h3>Title 1</h3>
+
+\    <p>Description for the first section. Add your content here.</p>
+
+  </div>
+
+  <div style="flex: 1;">
+
+\    <img src="https://via.placeholder.com/400" alt="Image 1" style="width: 100%; border-radius: 10px;" />
+
+  </div>
+
+</div>
 
 
-       User manually interacts with the application.
+
+<!-- Row 2 (Inverted) -->
+
+<div style="display: flex; align-items: center; gap: 20px; margin-bottom: 40px;">
+
+  <div style="flex: 1;">
+
+\    <img src="https://via.placeholder.com/400" alt="Image 2" style="width: 100%; border-radius: 10px;" />
+
+  </div>
+
+  <div style="flex: 1;">
+
+\    <h3>Title 2</h3>
+
+\    <p>Description for the second section. This layout is inverted.</p>
+
+  </div>
+
+</div>
