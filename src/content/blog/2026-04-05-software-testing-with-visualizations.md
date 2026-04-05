@@ -14,6 +14,8 @@ featured: false
 draft: false
 showPromo: true
 ---
+<div style="width: 100%">
+
 <!-- Row 1 -->
 
 <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 40px;">
@@ -51,5 +53,11 @@ showPromo: true
 <p>Description for the second section. This layout is inverted.</p>
 
   </div>
+
+</div>
+
+
+
+
 
 </div>
