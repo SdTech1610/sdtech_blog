@@ -20,21 +20,19 @@ showPromo: true
 
   <div style="flex: 1;">
 
-\    <h3>Title 1</h3>
+<h3>Title 1</h3>
 
-\    <p>Description for the first section. Add your content here.</p>
+<p>Description for the first section. Add your content here.</p>
 
   </div>
 
   <div style="flex: 1;">
 
-\    <img src="https://via.placeholder.com/400" alt="Image 1" style="width: 100%; border-radius: 10px;" />
+<img src="/images/uploads/chatgpt-image-apr-1-2026-07_14_15-pm-2-.png" alt="Image 1" style="width: 100%; border-radius: 10px;" />
 
   </div>
 
 </div>
-
-
 
 <!-- Row 2 (Inverted) -->
 
@@ -42,15 +40,15 @@ showPromo: true
 
   <div style="flex: 1;">
 
-\    <img src="https://via.placeholder.com/400" alt="Image 2" style="width: 100%; border-radius: 10px;" />
+<img src="https://via.placeholder.com/400" alt="Image 2" style="width: 100%; border-radius: 10px;" />
 
   </div>
 
   <div style="flex: 1;">
 
-\    <h3>Title 2</h3>
+<h3>Title 2</h3>
 
-\    <p>Description for the second section. This layout is inverted.</p>
+<p>Description for the second section. This layout is inverted.</p>
 
   </div>
 
