@@ -14,8 +14,7 @@ featured: false
 draft: false
 showPromo: true
 ---
+1.  **Manual Testing**
 
-\`\`\`mermaid
-flowchart LR
-    ItemA-->ItemB-->ItemC
-\`\`\`
+
+       User manually interacts with the application.
