@@ -3,7 +3,9 @@ backend:
   name: github
   repo: SdTech1610/sdtech_blog
   branch: main
-  auth_endpoint: https://github.com/login/oauth/authorize
+  api_root: https://api.github.com
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
 
 # Local development backend
 local_backend: false 
