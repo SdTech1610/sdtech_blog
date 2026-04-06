@@ -3,9 +3,7 @@ backend:
   name: github
   repo: SdTech1610/sdtech_blog
   branch: main
-  app_id: 7ba1cbf18b437bdd4d0af993117173842ae844e5
-  api_root: https://blog.sdtechworld.in
-  auth_endpoint: oauth/authorize
+  auth_endpoint: https://github.com/login/oauth/authorize
 
 # Local development backend
 local_backend: false 
